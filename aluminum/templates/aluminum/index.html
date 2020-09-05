@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Profiles List</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'aluminum/style.css' %}">
+  </head>
+  <body>
+    {% if profiles_list %}
+        <ul>
+            {% for profile in profiles_list %}
+                <li>{{ profile.profile_code }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No profiles are available.</p>
+    {% endif %}
+  </body>
+</html>
