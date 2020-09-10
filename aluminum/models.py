@@ -31,6 +31,7 @@ class Profile(models.Model):
     def __str__(self):
         return self.profile_code
 
+#ColorField is a class of the package django-colorfield. See documentation for further details.
 class Treatment(models.Model):
     treatment_type = models.IntegerField(choices=TREATMENT_TYPE_CHOICES, 
                                         default=TREATMENT_TYPE_CHOICES[0])
