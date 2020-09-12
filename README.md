@@ -4,4 +4,4 @@ This app will manage your aluminum bars and pieces, also accessories, hardware a
 # How to use ColorField on the models.py
 * Run 'pip install django-colorfield'
 * Add 'colorfield' to 'settings.INSTALLED_APPS'
-* Run 'python manage.py collecstatic'
+* Run 'python manage.py collectstatic'
