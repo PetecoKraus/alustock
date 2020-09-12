@@ -20,6 +20,7 @@ class ProductSystem(models.Model):
     def __str__(self):
         return self.system_name
 
+#ImageField is a class of the package Pillow. See documentation for further details.
 class Profile(models.Model):
     system = models.ForeignKey(ProductSystem, on_delete=models.CASCADE)
     profile_code = models.CharField(max_length=20)
