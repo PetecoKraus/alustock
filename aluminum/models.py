@@ -9,6 +9,8 @@ TREATMENT_TYPE_CHOICES = (
 
 class Extruder(models.Model):
     extruder_name = models.CharField(max_length=200)
+    logo_img = models.ImageField(upload_to = 'aluminum/images/extruders/', 
+                                    default = 'aluminum/images/no-img.jpg')
 
     def __str__(self):
         return self.extruder_name
@@ -16,6 +18,8 @@ class Extruder(models.Model):
 class ProductSystem(models.Model):
     extruder = models.ForeignKey(Extruder, on_delete=models.CASCADE)
     system_name = models.CharField(max_length=200)
+    logo_img = models.ImageField(upload_to = 'aluminum/images/systems/', 
+                                    default = 'aluminum/images/no-img.jpg')
 
     def __str__(self):
         return self.system_name
@@ -24,7 +28,7 @@ class ProductSystem(models.Model):
 class Profile(models.Model):
     system = models.ForeignKey(ProductSystem, on_delete=models.CASCADE)
     profile_code = models.CharField(max_length=20)
-    profile_pic = models.ImageField(upload_to = 'aluminum/images/', 
+    profile_pic = models.ImageField(upload_to = 'aluminum/images/profiles/', 
                                     default = 'aluminum/images/no-img.jpg')
     profile_length = models.DecimalField(max_digits=3, decimal_places=2, default=6.06)
     profile_weight = models.DecimalField(max_digits=5, decimal_places=3, default=0.000)
