@@ -2,19 +2,19 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Extruders List</title>
+    <title>Systems List</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'aluminum/style.css' %}">
   </head>
   <body>
-    {% if extruders_list %}
+    {% if systems_list %}
         <ul>
-            {% for extruder in extruders_list %}
-                <li><a href="{% url 'aluminum:systems' extruder.id %}">{{ extruder.extruder_name }}</a></li>
+            {% for system in systems_list %}
+                <li><a href={% url 'aluminum:profiles' system.id %}>{{ system.system_name }}</a></li>
             {% endfor %}
         </ul>
     {% else %}
-        <p>No extruders are available.</p>
+        <p>No systems are available.</p>
     {% endif %}
   </body>
 </html>
