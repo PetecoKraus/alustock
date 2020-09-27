@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Profile Detail</title>
+    {% load static %}
   </head>
   <body>
     <h1>Profile Code: {{ profile.profile_code }} of {{ profile.system }} from {{ profile.system.extruder }}</h1>
@@ -10,7 +11,7 @@
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
     <p><img src="{{ profile.profile_pic.url }}"></p>
     <p>Weight: {{ profile.profile_weight }} kg/m</p>
-    <p>Length: {{ profile.profile_code }} m</p>
+    <p>Length: {{ profile.profile_length }} m</p>
     <br>
     <p><a href={% url 'aluminum:profiles' profile.system_id %}>Go back</a></p>
   </body>

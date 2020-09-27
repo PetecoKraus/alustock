@@ -16,5 +16,7 @@
     {% else %}
         <p>No profiles are available.</p>
     {% endif %}
+    <br>
+    <p><a href={% url 'aluminum:systems' profiles_list.0.system.extruder_id %}>Go back</a></p>
   </body>
 </html>
