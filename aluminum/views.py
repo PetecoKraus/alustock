@@ -29,6 +29,11 @@ class ProfileListView(generic.ListView):
     def get_queryset(self):
         return Profile.objects.filter(system__pk=self.kwargs['pk'])
 
+    def get_context_data(self, **kwargs):
+        context = super(ProfileListView, self).get_context_data(**kwargs)
+        context['system_id'] = self.kwargs['pk']
+        return context
+
 
 class ProfileDetailView(generic.DetailView):
     model = Profile
