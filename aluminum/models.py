@@ -9,8 +9,9 @@ TREATMENT_TYPE_CHOICES = (
 
 class Extruder(models.Model):
     extruder_name = models.CharField(max_length=200)
-    logo_img = models.ImageField(upload_to = 'aluminum/static/aluminum/images/extruders/', 
-                                    default = 'aluminum/static/aluminum/images/no-img.jpg')
+    logo_img = models.ImageField(upload_to = 'aluminum/static/aluminum/images/extruders/',
+                                    default = 'aluminum/static/aluminum/images/no-img.jpg',
+                                    blank=True)
 
     def __str__(self):
         return self.extruder_name

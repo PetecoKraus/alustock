@@ -16,5 +16,7 @@
     {% else %}
         <p>No extruders are available.</p>
     {% endif %}
+    <br>
+    <a href="{% url 'aluminum:create_extruder' %}">New Extruder</a>
   </body>
 </html>

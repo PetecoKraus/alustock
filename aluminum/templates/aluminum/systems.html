@@ -7,16 +7,20 @@
     <link rel="stylesheet" type="text/css" href="{% static 'aluminum/style.css' %}">
   </head>
   <body>
+    <h1>List of {{ extruder_name }}'s Systems</h1>
+    <a href="{% url 'aluminum:edit_extruder' extruder_id %}">Edit extruder</a>
+    <a href="{% url 'aluminum:delete_extruder' extruder_id %}">Delete extruder</a>
+    <br>
     {% if systems_list %}
         <ul>
             {% for system in systems_list %}
-                <li><a href={% url 'aluminum:profiles' system.id %}>{{ system.system_name }}</a></li>
+                <li><a href="{% url 'aluminum:profiles' system.id %}">{{ system.system_name }}</a></li>
             {% endfor %}
         </ul>
     {% else %}
         <p>No systems are available.</p>
     {% endif %}
     <br>
-    <p><a href={% url 'aluminum:index' %}>Go back</a></p>
+    <p><a href="{% url 'aluminum:index' %}">Go back</a></p>
   </body>
 </html>

@@ -10,13 +10,13 @@
     {% if profiles_list %}
         <ul>
             {% for profile in profiles_list %}
-            <li><a href={% url 'aluminum:detail' profile.id %}>{{ profile.profile_code }}</a></li>
+            <li><a href="{% url 'aluminum:detail' profile.id %}">{{ profile.profile_code }}</a></li>
             {% endfor %}
         </ul>
     {% else %}
         <p>No profiles are available.</p>
     {% endif %}
     <br>
-    <p><a href={% url 'aluminum:systems' system_id %}>Go back</a></p>
+    <p><a href="{% url 'aluminum:systems' system_id %}">Go back</a></p>
   </body>
 </html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Edit Extruder</title>
+    {% load static %}
+  </head>
+  <body>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <br>
+        <input type="submit" value="Update"><a href="{% url 'aluminum:systems' extruder.id %}">Cancel</a>
+    </form>
+  </body>
+</html>
