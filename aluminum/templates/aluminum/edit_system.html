@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>New Extruder</title>
+    <title>Edit System</title>
     {% load static %}
   </head>
   <body>
@@ -10,7 +10,8 @@
         {% csrf_token %}
         {{ form.as_p }}
         <br>
-        <input type="submit" value="Create">
+        <input type="submit" value="Update">
+        <a href="{% url 'aluminum:profiles' extruder_id system_id %}">Cancel</a>
     </form>
   </body>
 </html>

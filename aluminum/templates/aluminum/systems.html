@@ -14,13 +14,14 @@
     {% if systems_list %}
         <ul>
             {% for system in systems_list %}
-                <li><a href="{% url 'aluminum:profiles' system.id %}">{{ system.system_name }}</a></li>
+                <li><a href="{% url 'aluminum:profiles' extruder_id system.id %}">{{ system.system_name }}</a></li>
             {% endfor %}
         </ul>
     {% else %}
         <p>No systems are available.</p>
     {% endif %}
     <br>
-    <p><a href="{% url 'aluminum:index' %}">Go back</a></p>
+    <p><a href="{% url 'aluminum:create_system' extruder_id %}">New system</a>
+    <a href="{% url 'aluminum:index' %}">Go back</a></p>
   </body>
 </html>

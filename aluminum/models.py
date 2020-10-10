@@ -20,7 +20,8 @@ class ProductSystem(models.Model):
     extruder = models.ForeignKey(Extruder, on_delete=models.CASCADE)
     system_name = models.CharField(max_length=200)
     logo_img = models.ImageField(upload_to = 'aluminum/static/aluminum/images/systems/', 
-                                    default = 'aluminum/static/aluminum/images/no-img.jpg')
+                                    default = 'aluminum/static/aluminum/images/no-img.jpg',
+                                    blank=True, null=True)
 
     def __str__(self):
         return self.system_name

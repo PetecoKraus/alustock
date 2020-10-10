@@ -13,6 +13,6 @@
     <p>Weight: {{ profile.profile_weight }} kg/m</p>
     <p>Length: {{ profile.profile_length }} m</p>
     <br>
-    <p><a href={% url 'aluminum:profiles' profile.system_id %}>Go back</a></p>
+    <p><a href={% url 'aluminum:profiles' extruder_id system_id %}>Go back</a></p>
   </body>
 </html>

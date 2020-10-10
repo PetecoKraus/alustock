@@ -7,16 +7,19 @@
     <link rel="stylesheet" type="text/css" href="{% static 'aluminum/style.css' %}">
   </head>
   <body>
+    <h1>List of {{ system_name }}'s Profiles</h1>
+    <a href="{% url 'aluminum:edit_system' extruder_id system_id %}">Edit system</a>
+    <a href="{% url 'aluminum:delete_system' extruder_id system_id %}">Delete system</a>
     {% if profiles_list %}
         <ul>
             {% for profile in profiles_list %}
-            <li><a href="{% url 'aluminum:detail' profile.id %}">{{ profile.profile_code }}</a></li>
+            <li><a href="{% url 'aluminum:detail' extruder_id system_id profile.id %}">{{ profile.profile_code }}</a></li>
             {% endfor %}
         </ul>
     {% else %}
         <p>No profiles are available.</p>
     {% endif %}
     <br>
-    <p><a href="{% url 'aluminum:systems' system_id %}">Go back</a></p>
+    <p><a href="{% url 'aluminum:systems' extruder_id %}">Go back</a></p>
   </body>
 </html>
