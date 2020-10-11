@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 
 from .models import Extruder, ProductSystem, Profile
-from .forms import ExtruderForm, ProductSystemForm
+from .forms import ExtruderForm, ProductSystemForm, ProfileForm
 
 
 class ExtruderListView(generic.ListView):
@@ -95,7 +95,6 @@ class CreateProductSystemView(generic.CreateView):
     form_class = ProductSystemForm
 
     def form_valid(self, form):
-        print(form)
         self.object = form.save(commit=False)
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
@@ -135,3 +134,56 @@ class DeleteProductSystemView(generic.DeleteView):
 
     def get_success_url(self):
         return reverse_lazy('aluminum:systems', kwargs={'extruder_pk': self.kwargs['extruder_pk']})
+
+
+class CreateProfileView(generic.CreateView):
+    template_name = 'aluminum/create_profile.html'
+    model = Profile
+    form_class = ProfileForm
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url())
+    
+    def get_success_url(self):
+        return reverse_lazy('aluminum:profiles', kwargs={'extruder_pk': self.kwargs['extruder_pk'],
+                                                        'system_pk': self.kwargs['system_pk']})
+
+
+class EditProfileView(generic.UpdateView, SuccessMessageMixin):
+    template_name = 'aluminum/edit_profile.html'
+    model = Profile
+    form_class = ProfileForm
+    success_message = 'The profile was successfully updated'
+    context_object_name = 'profile'
+
+    def get_context_data(self, **kwargs):
+        context = super(EditProfileView, self).get_context_data(**kwargs)
+        context['profile_id'] = self.kwargs['pk']
+        context['system_id'] = self.kwargs['system_pk']
+        context['extruder_id'] = self.kwargs['extruder_pk']
+        print(context)
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy('aluminum:detail', kwargs={'extruder_pk': self.kwargs['extruder_pk'],
+                                                        'system_pk': self.kwargs['system_pk'],
+                                                        'pk': self.kwargs['pk']})
+
+
+class DeleteProfileView(generic.DeleteView):
+    template_name = 'aluminum/delete_profile.html'
+    model = Profile
+    context_object_name = 'profile'
+
+    def get_context_data(self, **kwargs):
+        context = super(DeleteProfileView, self).get_context_data(**kwargs)
+        context['profile_id'] = self.kwargs['pk']
+        context['system_id'] = self.kwargs['system_pk']
+        context['extruder_id'] = self.kwargs['extruder_pk']
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy('aluminum:profiles', kwargs={'extruder_pk': self.kwargs['extruder_pk'],
+                                                        'system_pk': self.kwargs['system_pk']})

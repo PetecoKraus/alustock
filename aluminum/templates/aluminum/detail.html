@@ -6,7 +6,9 @@
     {% load static %}
   </head>
   <body>
-    <h1>Profile Code: {{ profile.profile_code }} of {{ profile.system }} from {{ profile.system.extruder }}</h1>
+    <h1>Profile Code: {{ profile.profile_code }} of {{ profile.system }} by {{ profile.system.extruder }}</h1>
+    <a href="{% url 'aluminum:edit_profile' extruder_id system_id profile.id %}">Edit profile</a>
+    <a href="{% url 'aluminum:delete_profile' extruder_id system_id profile.id %}">Delete profile</a>
 
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
     <p><img src="{{ profile.profile_pic.url }}"></p>

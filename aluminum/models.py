@@ -21,7 +21,7 @@ class ProductSystem(models.Model):
     system_name = models.CharField(max_length=200)
     logo_img = models.ImageField(upload_to = 'aluminum/static/aluminum/images/systems/', 
                                     default = 'aluminum/static/aluminum/images/no-img.jpg',
-                                    blank=True, null=True)
+                                    blank=True)
 
     def __str__(self):
         return self.system_name
@@ -31,7 +31,8 @@ class Profile(models.Model):
     system = models.ForeignKey(ProductSystem, on_delete=models.CASCADE)
     profile_code = models.CharField(max_length=20)
     profile_pic = models.ImageField(upload_to = 'aluminum/static/aluminum/images/profiles/', 
-                                    default = 'aluminum/static/aluminum/images/no-img.jpg')
+                                    default = 'aluminum/static/aluminum/images/no-img.jpg',
+                                    blank=True)
     profile_length = models.DecimalField(max_digits=3, decimal_places=2, default=6.06)
     profile_weight = models.DecimalField(max_digits=5, decimal_places=3, default=0.000)
 

@@ -20,6 +20,7 @@
         <p>No profiles are available.</p>
     {% endif %}
     <br>
-    <p><a href="{% url 'aluminum:systems' extruder_id %}">Go back</a></p>
+    <p><a href="{% url 'aluminum:create_profile' extruder_id system_id %}">New profile</a>
+      <a href="{% url 'aluminum:systems' extruder_id %}">Go back</a></p>
   </body>
 </html>
