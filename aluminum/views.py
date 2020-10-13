@@ -42,7 +42,7 @@ class ProfileListView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super(ProfileListView, self).get_context_data(**kwargs)
         context['system_id'] = self.kwargs['system_pk']
-        context['system_name'] = ProductSystem.objects.filter(id=self.kwargs['system_pk'])[0].system_name
+        context['system_name'] = ProductSystem.objects.get(id=self.kwargs['system_pk']).system_name
         context['extruder_id'] = self.kwargs['extruder_pk']
         return context
 
@@ -96,6 +96,7 @@ class CreateProductSystemView(generic.CreateView):
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
+        self.object.extruder = Extruder.objects.get(id=self.kwargs['extruder_pk'])
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
     
@@ -143,6 +144,7 @@ class CreateProfileView(generic.CreateView):
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
+        self.object.system = ProductSystem.objects.get(id=self.kwargs['system_pk'])
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
     
